@@ -5,7 +5,7 @@ env:
   ANDROID_VERSION: 'android15'
   KERNEL_VERSION: '6.6'
   SUB_VERSION: '118'
-  KERNEL_NAME: 'android15-8-g29d86c5fc9dd-abogki428889875-4k'
+  KERNEL_NAME: '6.6.118-android15-8-g93e223c276e7-abogki500782043-4k'
   CCACHE_KEY: ccache-ecsv4-6.6.118
 
 on:
@@ -628,6 +628,7 @@ jobs:
           sudo rm -rf /usr/local/lib/android &
           sudo rm -rf /opt/ghc &
           sudo rm -rf /opt/hostedtoolcache/CodeQL &
+          export KBUILD_BUILD_TIMESTAMP="Wed Apr 8 15:08:30 UTC 2026"
           make -j$(nproc --all) LLVM=1 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC="ccache clang" LD="ld.lld" HOSTLD=ld.lld O=out KCFLAGS+=-O2 KCFLAGS+=-Wno-error gki_defconfig &&
           make -j$(nproc --all) LLVM=1 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CC="$(pwd)/cc-wrapper" LD="$(pwd)/ld-wrapper" HOSTLD=ld.lld O=out KCFLAGS+=-O2 KCFLAGS+=-Wno-error Image
           
